@@ -91,6 +91,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="JournalCallParamDataBoolean.h" />
+    <ClInclude Include="JournalCallParamDataInteger.h" />
     <ClInclude Include="JournalCallData.h" />
     <ClInclude Include="JournalCallParamData.h" />
     <ClInclude Include="JournalCallParamDataClass.h" />
@@ -106,7 +108,9 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="JournalCallData.cpp" />
     <ClCompile Include="JournalCallParamData.cpp" />
+    <ClCompile Include="JournalCallParamDataBoolean.cpp" />
     <ClCompile Include="JournalCallParamDataClass.cpp" />
+    <ClCompile Include="JournalCallParamDataInteger.cpp" />
     <ClCompile Include="JournalCallParamDataString.cpp" />
     <ClCompile Include="JournalFile.cpp" />
     <ClCompile Include="Journaling.cpp" />

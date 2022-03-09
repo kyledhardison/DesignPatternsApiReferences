@@ -40,14 +40,14 @@ void UI::StartGUILoop()
 
 	//Setup Journaling File
 	SetJournalingLangauge(JournalingLanguage::CPP);
-	StartJournaling("C:\\Users\\polek\\source\\repos\\SoftwareArchitectureCLassApplication\\JournaledCPPFileProject\\SampleJournal.txt");
+	StartJournaling("C:\\Users\\jpbro\\Documents\\develop\\SoftwareArch\\repositories\\SoftwareArchitectureCLassApplication\\JournaledCPPFileProject\\SampleJournal.txt");
 
 
 	PartFile * partFile = MakePartUI("d:\\workdir\\someDir\\SomeName.part");
 	AddWidgetFeatureToPartUI(partFile, true, 10);
 	SavePartUI(partFile);
 
-	PartFile* partFile2 = OpenPartUI("C:\\Users\\polek\\source\\repos\\SoftwareArchitectureCLassApplication\\SampleVersionUp.prt");
+	PartFile* partFile2 = OpenPartUI("C:\\Users\\jpbro\\Documents\\develop\\SoftwareArch\\repositories\\SoftwareArchitectureCLassApplication\\SampleVersionUp.prt");
 
 	SavePartUI(partFile2);
 

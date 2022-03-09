@@ -20,6 +20,14 @@ void JournalCallParamDataString::Journal()
         // i.e. if d:\dir\some.prt  we need to actualy change this to 
         //         d:\\dir\\some.prt
         
+        size_t start_pos = 0;
+        std::string findString = "\\";
+        std::string replaceString = "\\\\";
+        while ((start_pos = m_value.find(findString, start_pos)) != std::string::npos) {
+            m_value.replace(start_pos, findString.length(), replaceString);
+            start_pos += replaceString.length();
+        }
+
         std::string jnlString = "\"" + m_value + "\"";
         GetActiveJournalFile()->WriteToFile(jnlString);
     }

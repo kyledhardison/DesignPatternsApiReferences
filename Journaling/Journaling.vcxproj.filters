@@ -51,6 +51,12 @@
     <ClInclude Include="JournalingTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="JournalCallParamDataInteger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JournalCallParamDataBoolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Journaling.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="JournalFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JournalCallParamDataInteger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JournalCallParamDataBoolean.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
