@@ -20,6 +20,10 @@ void JournalFile::WriteJournalFile()
 
 JournalFile::~JournalFile()
 {
+    if (m_file != nullptr)
+    {
+        m_file->close();
+    }
 	delete m_file;
 }
 

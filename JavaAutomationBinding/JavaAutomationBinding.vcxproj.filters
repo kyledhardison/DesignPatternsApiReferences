@@ -15,27 +15,29 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
-    <None Include="..\FakeAutomationJava\FakeAutomationJava.java">
+    <None Include="automationapi\Session.java">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="automationapi\Part.java">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="..\JavaAutomationBindingApp\SampleApp.java">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
+    <ClInclude Include="automationapi_Part.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="jniAutomationLibrary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\FakeAutomationJava\FakeAutomationJava.h">
+    <ClInclude Include="automationapi_Session.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jniAutomationLibrary.cpp">
+    <ClCompile Include="automationapi_Part.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="automationapi_Session.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

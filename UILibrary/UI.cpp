@@ -47,7 +47,7 @@ void UI::Init()
 
 void UI::StartGUILoop()
 {
-	int WorkFlowToRun = 2;
+	int WorkFlowToRun = 1;
 
 	if (WorkFlowToRun == 1)
 	{
@@ -55,13 +55,17 @@ void UI::StartGUILoop()
 	}
 	else if (WorkFlowToRun == 2)
 	{
-		PerformJavaAutomationWorkflow();
+		PerformPartsOpsThatNeedsToLoadDemandLoadedLibrary();
 	}
 	else if (WorkFlowToRun == 3)
 	{
-		PerformDotnetAutomationWorkflow();
+		PerformJavaAutomationWorkflow();
 	}
 	else if (WorkFlowToRun == 4)
+	{
+		PerformDotnetAutomationWorkflow();
+	}
+	else if (WorkFlowToRun == 5)
 	{
 		PerformSampleUsingBuilder();
 	}
@@ -77,6 +81,37 @@ void UI::ShutDownGUILoop()
 	observer4->RemoveMeFromTheList();
 	observer5->RemoveMeFromTheList();
 
+}
+
+void UI::PerformPartsOpsThatNeedsToLoadDemandLoadedLibrary()
+{
+	//TODO this needs work to show usage of the deman loaded library
+
+	// This is just mimic'ing a simple CAD workflow.
+	// We are going to pretend the user makes  part, makes a widget feature, saves the part,
+	// and then exits.  And this will stop the GUI loop and lead to exit on main
+
+	//Setup Journaling File
+	SetJournalingLangauge(JournalingLanguage::CPP);
+	StartJournaling(BasePath() + "\\JournaledCPPFileProject\\SampleJournal.txt");
+
+
+	Application::PartFile* partFile = MakePartUI("d:\\workdir\\someDir\\SomeName.part");
+	AddWidgetFeatureToPartUI(partFile, true, 10);
+	SavePartUI(partFile);
+
+	Application::PartFile* partFile2 = OpenPartUI(BasePath() + "\\SampleVersionUp.prt");
+
+	SavePartUI(partFile2);
+
+	//End Journaling
+	EndJournaling();
+
+	std::cout << "Before Loaded Library" << std::endl;
+	HINSTANCE handle = CoreLoadLibrary("COOLDEMANDLOADEDLIBRARY.dll");
+	std::cout << "After Loaded Library" << std::endl;
+	UnloadLibrary(handle);
+	std::cout << "After UnLoaded Library" << std::endl;
 }
 
 void UI::PerformSampleJournalingPartsOps()
@@ -100,13 +135,6 @@ void UI::PerformSampleJournalingPartsOps()
 
 	//End Journaling
 	EndJournaling();
-
-	std::cout << "Before Loaded Library" << std::endl;
-	HINSTANCE handle = CoreLoadLibrary("COOLDEMANDLOADEDLIBRARY.dll");
-	std::cout << "After Loaded Library" << std::endl;
-	UnloadLibrary(handle);
-	std::cout << "After UnLoaded Library" << std::endl;
-
 }
 
 void UI::PerformSampleUsingBuilder()

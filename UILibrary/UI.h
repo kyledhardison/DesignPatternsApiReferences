@@ -18,6 +18,7 @@ public:
 
 private:
 	void PerformSampleJournalingPartsOps();
+	void PerformPartsOpsThatNeedsToLoadDemandLoadedLibrary();
 	void PerformJavaAutomationWorkflow();
 	void PerformDotnetAutomationWorkflow();
 	void PerformSampleUsingBuilder();

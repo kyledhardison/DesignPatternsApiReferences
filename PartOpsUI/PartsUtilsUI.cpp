@@ -17,8 +17,6 @@ Application::PartFile* MakePartUI(std::string s)
 	std::cout << "MakePartUI was called with args " << s << std::endl;
 
 	return Journaling_Session_MakePart(s);
-
-
 }
 
 Application::PartFile* OpenPartUI(std::string s)
