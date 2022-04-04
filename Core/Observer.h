@@ -11,8 +11,10 @@ class CORE_API Observer : public IObserver
         Observer(CoreSession& coreSesssion, EventTypes eventType) ;
         ~Observer() override;
         void Update(const std::string& message_from_subject) override;
+        void Update(const std::string& message_from_subject, void * data) override;
         void RemoveMeFromTheList();
         void PrintInfo();
+        void PrintInfo(void* data);
         bool UpdateOnEventType(EventTypes eventType);
 
     private:

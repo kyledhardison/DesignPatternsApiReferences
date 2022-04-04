@@ -1,8 +1,9 @@
-#include "Part.h"
+#include "AutomationAPI_Part.h"
 #include "..\Core\GuidObject.h"
 #include "..\AppPartOps\PartOps.h"
-#include "FeatureCollection.h"
-#include "RoutingCollection.h"
+#include "AutomationAPI_FeatureCollection.h"
+#include "AutomationAPI_RoutingCollection.h"
+#include "..\AppPartOps\Journaling_Part.h"
 
 using namespace AutomationAPI;
 
@@ -29,7 +30,7 @@ namespace AutomationAPI
 
 void AutomationAPI::Part::Save()
 {
-	PartFile* part = dynamic_cast<PartFile*>(GuidObjectManager::GetGuidObjectManager().GetObjectFromGUID(m_partImpl->m_guid));
+	Application::PartFile* part = dynamic_cast<Application::PartFile*>(GuidObjectManager::GetGuidObjectManager().GetObjectFromGUID(m_partImpl->m_guid));
 	if (part == nullptr)
 	{
 		throw std::exception("not able to retrieve Part Object");
@@ -43,7 +44,7 @@ void AutomationAPI::Part::Save()
 
 void AutomationAPI::Part::MakeWidgetFeature(bool option1, int values)
 {
-	PartFile* part = dynamic_cast<PartFile*>(GuidObjectManager::GetGuidObjectManager().GetObjectFromGUID(m_partImpl->m_guid));
+	Application::PartFile* part = dynamic_cast<Application::PartFile*>(GuidObjectManager::GetGuidObjectManager().GetObjectFromGUID(m_partImpl->m_guid));
 	if (part == nullptr)
 	{
 		throw std::exception("not able to retrieve Part Object");
@@ -54,12 +55,12 @@ void AutomationAPI::Part::MakeWidgetFeature(bool option1, int values)
 	}
 }
 
-Part* AutomationAPI::Part::CreatePart(int guid)
+AutomationAPI::Part* AutomationAPI::Part::CreatePart(int guid)
 {
 	// We should check the guid being passed in, as this is public
 	// but that is for another day
 
-	return new Part(guid);
+	return new AutomationAPI::Part(guid);
 }
 
 AutomationAPI::Part::Part(int guid)

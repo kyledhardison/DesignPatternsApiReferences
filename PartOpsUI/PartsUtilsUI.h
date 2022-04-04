@@ -3,13 +3,16 @@
 #include "PartOpsUIExports.h"
 #include <string>
 
+namespace Application
+{
+	class PartFile;
+}
 
-class PartFile;
 
-PARTOPSUI_API PartFile* OpenPartUI(std::string);
+PARTOPSUI_API Application::PartFile* OpenPartUI(std::string);
 
-PARTOPSUI_API PartFile* MakePartUI(std::string);
+PARTOPSUI_API Application::PartFile* MakePartUI(std::string);
 
-PARTOPSUI_API void SavePartUI(PartFile* partFile);
+PARTOPSUI_API void SavePartUI(Application::PartFile* partFile);
 
 

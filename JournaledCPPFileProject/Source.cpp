@@ -1,6 +1,6 @@
 #include <iostream>
-#include "..\AutomationBinding\Session.h"
-#include "..\AutomationBinding\Part.h"
+#include "..\AutomationBinding\AutomationAPI_Session.h"
+#include "..\AutomationBinding\AutomationAPI_Part.h"
 
 
 int NotMain()

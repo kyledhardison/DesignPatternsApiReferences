@@ -29,6 +29,12 @@ extern JOURNALING_API void JournalEndCall();
 /// <param name="paramName"></param>
 extern JOURNALING_API void JournalIntInParam(int value, std::string paramName);
 /// <summary>
+/// Journals a return parameter as a integer
+/// </summary>
+/// <param name="value"></param>
+/// <param name="paramName"></param>
+extern JOURNALING_API void JournalReturnInt(int value, std::string paramName);
+/// <summary>
 /// Journals in a bool parameter
 /// </summary>
 /// <param name="value"></param>
@@ -47,3 +53,12 @@ extern JOURNALING_API void JournalStringInParam(std::string value, std::string p
 /// <param name="className"></param>
 /// <param name="paramName"></param>
 extern JOURNALING_API void JournalReturnClass(GuidObject* classObject, std::string className, std::string paramName);
+
+/// <summary>
+/// Journals in a class as a input parameter
+/// </summary>
+/// <param name="classObject"></param>
+/// <param name="className"></param>
+/// <param name="paramName"></param>
+extern JOURNALING_API void JournalInClassParam(GuidObject* classObject, std::string className, std::string paramName);
+

@@ -18,6 +18,9 @@ void ProcessBlock(std::ifstream& streamObject)
 		{
 			done = true;
 		}
+		
+		//NIY 
+
 		//else if (startsWith(line, ""))
 		//{
 		//	std::string partFileName = line.substr(EndFeatureToken.size(), line.size() - EndFeatureToken.size());

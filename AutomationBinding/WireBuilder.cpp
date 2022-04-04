@@ -1,5 +1,5 @@
-#include "WireBuilder.h"
-#include "CADObject.h"
+#include "AutomationAPI_WireBuilder.h"
+#include "AutomationAPI_CADObject.h"
 
 
 
@@ -8,7 +8,7 @@ AutomationAPI::CADObject* AutomationAPI::WireBuilder::Commit()
 	return nullptr;
 }
 
-void AutomationAPI::WireBuilder::SetType(WireBuilderTypes type)
+void AutomationAPI::WireBuilder::SetType(AutomationAPI::WireBuilder::WireBuilderTypes type)
 {
 }
 

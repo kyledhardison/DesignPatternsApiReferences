@@ -1,8 +1,8 @@
 #include "WireVersions.h"
 
 
-Wire2::Wire2(std::string distance)
-	: m_distance(distance)
+Wire2::Wire2(std::string distance, int guid)
+	: IWire(guid), m_distance(distance)
 {
 
 }

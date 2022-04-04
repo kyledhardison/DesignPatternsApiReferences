@@ -1,8 +1,10 @@
 #include "PartsUtilsUI.h"
 #include <iostream>
 #include "..\AppPartOps\PartOps.h"
+#include "..\AppPartOps\Journaling_Session.h"
+#include "..\AppPartOps\Journaling_Part.h"
 
-void SavePartUI(PartFile* partFile)
+void SavePartUI(Application::PartFile* partFile)
 {
 	std::cout << "SavePartUI was called" << std::endl;
 	
@@ -10,20 +12,20 @@ void SavePartUI(PartFile* partFile)
 	
 }
 
-PartFile* MakePartUI(std::string s)
+Application::PartFile* MakePartUI(std::string s)
 {
 	std::cout << "MakePartUI was called with args " << s << std::endl;
 
-	return Journaling_MakePart(s);
+	return Journaling_Session_MakePart(s);
 
 
 }
 
-PartFile* OpenPartUI(std::string s)
+Application::PartFile* OpenPartUI(std::string s)
 {
 	std::cout << "OpenPartUI was called with args " << s << std::endl;
 
-	return Journaling_OpenPart(s);
+	return Journaling_Session_OpenPart(s);
 
 }
 

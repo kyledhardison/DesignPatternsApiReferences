@@ -1,6 +1,6 @@
-#include "RoutingCollection.h"
-#include "Wire.h"
-#include "WireBuilder.h"
+#include "AutomationAPI_RoutingCollection.h"
+#include "AutomationAPI_Wire.h"
+#include "AutomationAPI_WireBuilder.h"
 #include <iostream>
 
 AutomationAPI::RoutingCollection::RoutingCollection(int guid) : m_guid(guid)

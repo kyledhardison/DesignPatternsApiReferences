@@ -6,7 +6,7 @@
 class Wire2 : public RoutingFeature, public IWire
 {
 public:
-	Wire2(std::string distance);
+	Wire2(std::string distance, int guid);
 	std::string GetVersion() override;
 
 	const std::string& GetDistance()

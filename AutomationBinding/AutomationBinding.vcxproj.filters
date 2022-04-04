@@ -19,6 +19,7 @@
     <None Include="NonPimplVersionOfPart .h__">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,40 +28,40 @@
     <ClInclude Include="AutomationBindingExports.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Session.h">
+    <ClInclude Include="AutomationAPI_Session.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Part.h">
+    <ClInclude Include="AutomationAPI_Part.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FeatureCollection.h">
+    <ClInclude Include="AutomationAPI_FeatureCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BlockBuilder.h">
+    <ClInclude Include="AutomationAPI_BlockBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IBuilder.h">
+    <ClInclude Include="AutomationAPI_IBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Extrude.h">
+    <ClInclude Include="AutomationAPI_Extrude.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CADObject.h">
+    <ClInclude Include="AutomationAPI_CADObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
+    <ClInclude Include="AutomationAPI_Block.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ICADObject.h">
+    <ClInclude Include="AutomationAPI_ICADObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RoutingCollection.h">
+    <ClInclude Include="AutomationAPI_RoutingCollection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Wire.h">
+    <ClInclude Include="AutomationAPI_Wire.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WireBuilder.h">
+    <ClInclude Include="AutomationAPI_WireBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

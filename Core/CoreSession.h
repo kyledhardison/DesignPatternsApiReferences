@@ -24,8 +24,10 @@ class CORE_API CoreSession : ISubject
         void Detach(IObserver* observer) override;
         void NotifyAll() override;
         void Notify(IObserver::EventTypes eventType) override;
+        void Notify(IObserver::EventTypes eventType, void* data) override;
 
         void CreateMessage(IObserver::EventTypes eventType);
+        void CreateMessage(IObserver::EventTypes eventType, void * data);
         void CreateMessage(std::string message = "Empty");
         void HowManyObserver();
 

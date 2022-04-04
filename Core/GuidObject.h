@@ -12,7 +12,7 @@ class CORE_API GuidObject
 
 		virtual ~GuidObject();
 		GuidObject() = delete;
-	private:
+	protected:
 		
 		int m_guid;
 

@@ -1,6 +1,6 @@
 #include "CoreSession.h"
 #include "Observer.h"
-
+#include "..\AppPartOps\DelMeBadPattern.h"
 
 
 CoreSession::CoreSession() : m_observerForSavePart(nullptr), m_observerForClosePart(nullptr), m_observerForOpenPart(nullptr)
@@ -73,8 +73,12 @@ static std::string  GenerateMessageFromEvent(Observer::EventTypes eventType)
     return retVal;
 }
 
+
+
 void CoreSession::Notify(Observer::EventTypes eventType) 
 {
+    std::string generateMessage = GenerateMessageFromEvent(eventType);
+
     std::list<IObserver*>::iterator iterator = m_listObserver.begin();
     HowManyObserver();
     while (iterator != m_listObserver.end()) 
@@ -82,8 +86,24 @@ void CoreSession::Notify(Observer::EventTypes eventType)
         Observer* observer = dynamic_cast<Observer*>(*iterator);
         if (observer != nullptr && observer->UpdateOnEventType(eventType))
         {
-            std::string generateMessage = GenerateMessageFromEvent(eventType);
             observer->Update(generateMessage);
+        }
+        ++iterator;
+    }
+}
+
+void CoreSession::Notify(Observer::EventTypes eventType, void * data)
+{
+    std::string generateMessage = GenerateMessageFromEvent(eventType);
+
+    std::list<IObserver*>::iterator iterator = m_listObserver.begin();
+    HowManyObserver();
+    while (iterator != m_listObserver.end())
+    {
+        Observer* observer = dynamic_cast<Observer*>(*iterator);
+        if (observer != nullptr && observer->UpdateOnEventType(eventType))
+        {
+            observer->Update(generateMessage, data);
         }
         ++iterator;
     }
@@ -94,6 +114,14 @@ void CoreSession::CreateMessage(Observer::EventTypes eventType)
     Notify(eventType);
 
 }
+
+void CoreSession::CreateMessage(Observer::EventTypes eventType, void* data)
+{
+    Notify(eventType, data);
+
+}
+
+
 
 void CoreSession::CreateMessage(std::string message ) {
     this->m_message = message;

@@ -89,24 +89,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AppLibrary.h" />
+    <ClInclude Include="AppFeaturesOpsExports.h" />
     <ClInclude Include="Block.h" />
+    <ClInclude Include="BlockBuilder.h" />
     <ClInclude Include="Extrude.h" />
     <ClInclude Include="ExtrudeVersions.h" />
     <ClInclude Include="Feature.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Journaling_BlockBuilder.h" />
+    <ClInclude Include="Journaling_FeatureCollection.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AppLibrary.cpp" />
     <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockBuilder.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Extrude.cpp" />
     <ClCompile Include="ExtrudeVersions.cpp" />
     <ClCompile Include="Feature.cpp" />
+    <ClCompile Include="Journaling_BlockBuilder.cpp" />
+    <ClCompile Include="Journaling_FeatureCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AppsCore\AppsCore.vcxproj">
+      <Project>{5c8e80cc-32c4-4a81-8662-363e48b9ad1e}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.vcxproj">
       <Project>{5dc81d63-ec79-4d3c-be0f-7b36fd069376}</Project>
     </ProjectReference>
@@ -119,5 +128,14 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\boost.1.78.0\build\boost.targets" Condition="Exists('..\packages\boost.1.78.0\build\boost.targets')" />
+    <Import Project="..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets" Condition="Exists('..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\boost.1.78.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.78.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets'))" />
+  </Target>
 </Project>

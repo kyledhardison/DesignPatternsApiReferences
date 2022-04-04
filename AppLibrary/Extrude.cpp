@@ -11,24 +11,25 @@ std::string Extrude_DistanceToken = "Extrude_Distance:";
 std::string Extrude_TargetFaceToken = "Extrude_TargetFace:";
 std::string Extrude_VectorToken = "Extrude_Vector:";
 std::string Extrude_BooleanToken = "Extrude_Boolean:";
+std::string Extrude_GuidToken = "Extrude_Guid:";
 
 
-void* ReadExtrudeVersion2(std::ifstream& streamObject);
-void* ReadExtrudeVersion3(std::ifstream& streamObject);
+GuidObject* ReadExtrudeVersion2(std::ifstream& streamObject);
+GuidObject* ReadExtrudeVersion3(std::ifstream& streamObject);
 
-Extrude* VersionUpExtrudeVersion2(Extrude2* oldFeature);
+Application::Extrude* VersionUpExtrudeVersion2(Application::Extrude2* oldFeature);
 
 static DataReaderRegistrant extrude2registrant("Extrude2", ReadExtrudeVersion2);
 static DataReaderRegistrant extrude3registrant("Extrude3", ReadExtrudeVersion3);
 
 
 
-Extrude::Extrude(std::string distance, std::string targetFace, std::string vectorObject, std::string isAddition, std::string isSubtraction)
-	: m_distance(distance), m_targetFace(targetFace), m_vectorObject(vectorObject), m_isAddition(isAddition), m_isSubtraction(isSubtraction)
+Application::Extrude::Extrude(std::string distance, std::string targetFace, std::string vectorObject, std::string isAddition, std::string isSubtraction, int guid)
+	: Application::IExtrude(guid), m_distance(distance), m_targetFace(targetFace), m_vectorObject(vectorObject), m_isAddition(isAddition), m_isSubtraction(isSubtraction)
 {
 
 }
-std::string Extrude::GetVersion()
+std::string Application::Extrude::GetVersion()
 {
 	return "3";
 }
@@ -56,11 +57,15 @@ void ReadInExtrude(std::ifstream& streamObject)
 		extrudeReadIn = readerFunc(streamObject);
 	}
 	
-	IExtrude* extrudeReadInterface = (IExtrude*)extrudeReadIn;
+	Application::IExtrude* extrudeReadInterface = (Application::IExtrude*)extrudeReadIn;
 
-	Extrude* retVal = dynamic_cast<Extrude*>(extrudeReadInterface);
+	Application::IExtrude* retVal2 = dynamic_cast<Application::IExtrude*>(extrudeReadInterface);
 
-	if (dynamic_cast<Extrude*>(extrudeReadInterface) == nullptr)
+	Application::Extrude* retVal = dynamic_cast<Application::Extrude*>(extrudeReadInterface);
+
+	Application::Extrude2* retVal3 = dynamic_cast<Application::Extrude2*>(retVal2);
+
+	if (retVal == nullptr)
 	{
 		if (version == "1")
 		{
@@ -68,7 +73,7 @@ void ReadInExtrude(std::ifstream& streamObject)
 		}
 		else if (version == "2")
 		{
-			Extrude2* extrudeVersion2 = dynamic_cast<Extrude2*>(extrudeReadInterface);
+			Application::Extrude2* extrudeVersion2 = dynamic_cast<Application::Extrude2*>(extrudeReadInterface);
 			retVal = VersionUpExtrudeVersion2(extrudeVersion2);
 		}
 		// need to upgrade to latest Version
@@ -81,7 +86,7 @@ void ReadInExtrude(std::ifstream& streamObject)
 	// TODO I believe we are leaking the Extrude Object here :(
 }
 
-void * ReadExtrudeVersion2(std::ifstream& streamObject)
+GuidObject * ReadExtrudeVersion2(std::ifstream& streamObject)
 {
 	std::string line;
 
@@ -89,6 +94,7 @@ void * ReadExtrudeVersion2(std::ifstream& streamObject)
 	std::string targetFace;
 	std::string vectorObject;
 	std::string booleanType;
+	int guid = -1;
 
 	bool done = false;
 	while (!done)
@@ -123,17 +129,23 @@ void * ReadExtrudeVersion2(std::ifstream& streamObject)
 			booleanType = line.substr(Extrude_BooleanToken.size(), line.size() - Extrude_BooleanToken.size());
 			std::cout << "    " << Extrude_BooleanToken << " " << booleanType << std::endl;
 		}
+		else if (startsWith(line, Extrude_GuidToken))
+		{
+			std::string temp = line.substr(Extrude_GuidToken.size(), line.size() - Extrude_GuidToken.size());
+			guid = std::stoi(temp);
+			std::cout << "    " << Extrude_GuidToken << " " << guid << std::endl;
+		}
 
 	}
 
 	// TODO no validation we read in all the right fields 
 
-	return new Extrude2(distance, targetFace, vectorObject, booleanType);
+	return new Application::Extrude2(distance, targetFace, vectorObject, booleanType, guid);
 
 }
 
 
-void * ReadExtrudeVersion3(std::ifstream& streamObject)
+GuidObject* ReadExtrudeVersion3(std::ifstream& streamObject)
 {
 
 	throw std::exception("NIY");
@@ -143,15 +155,16 @@ void * ReadExtrudeVersion3(std::ifstream& streamObject)
 }
 
 
-Extrude* VersionUpExtrudeVersion2(Extrude2 * oldFeature)
+Application::Extrude* VersionUpExtrudeVersion2(Application::Extrude2 * oldFeature)
 {
-	Extrude* retval = nullptr;
+	Application::Extrude* retval = nullptr;
 
 	//Old Items
 	const std::string distance = oldFeature->GetDistance();
 	const std::string targetFace = oldFeature->GetTargetFace();
 	const std::string vectorObject = oldFeature->GetVectorObject();
 	const std::string booleanType = oldFeature->GetBooleanType();
+	int guid = oldFeature->GetGuid();
 
 	//New Items
 	std::string isAddition;
@@ -169,7 +182,7 @@ Extrude* VersionUpExtrudeVersion2(Extrude2 * oldFeature)
 		throw std::exception("NIY");
 	}
 
-	retval = new Extrude(distance, targetFace, vectorObject, isAddition, isSubtraction);
+	retval = new Application::Extrude(distance, targetFace, vectorObject, isAddition, isSubtraction, guid);
 
 	return retval;
 

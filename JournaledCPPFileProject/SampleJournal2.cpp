@@ -1,10 +1,10 @@
 #include <iostream>
-#include "..\AutomationBinding\Session.h"
-#include "..\AutomationBinding\Part.h"
-#include "..\AutomationBinding\Block.h"
-#include "..\AutomationBinding\BlockBuilder.h"
-#include "..\AutomationBinding\CADObject.h"
-#include "..\AutomationBinding\FeatureCollection.h"
+#include "..\AutomationBinding\AutomationAPI_Session.h"
+#include "..\AutomationBinding\AutomationAPI_Part.h"
+#include "..\AutomationBinding\AutomationAPI_Block.h"
+#include "..\AutomationBinding\AutomationAPI_BlockBuilder.h"
+#include "..\AutomationBinding\AutomationAPI_CADObject.h"
+#include "..\AutomationBinding\AutomationAPI_FeatureCollection.h"
 
 int main2()
 {

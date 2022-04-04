@@ -1,4 +1,4 @@
-#include "CADObject.h"
+#include "AutomationAPI_CADObject.h"
 
 int AutomationAPI::CADObject::GetGuid()
 {

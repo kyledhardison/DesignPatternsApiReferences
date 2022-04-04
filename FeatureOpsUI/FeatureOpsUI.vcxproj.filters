@@ -16,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -27,12 +28,18 @@
     <ClInclude Include="MakeWidgetFeature.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BlockBuilderUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MakeWidgetFeature.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockBuilderUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

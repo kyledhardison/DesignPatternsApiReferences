@@ -1,9 +1,12 @@
 #pragma once
 
 #include "FeatureOpsUIExports.h"
+namespace Application
+{
+	class PartFile;
+}
 
-class PartFile;
 
-FEATUREOPSUI_API void AddWidgetFeatureToPartUI(PartFile* partFile, bool option1, int values);
+FEATUREOPSUI_API void AddWidgetFeatureToPartUI(Application::PartFile* partFile, bool option1, int values);
 
 

@@ -19,8 +19,16 @@ void JournalCallParamDataClass::Journal()
 
     if (this->m_paramType == JournalCallParamData::ParameterMetaType::INPUT)
     {
-
-        throw std::exception("NIY ");
+        //TODO only handled the nullptr case
+        if (this->m_classObject == nullptr)
+        {
+            std::string jnlString = "nullptr";
+            GetActiveJournalFile()->WriteToFile(jnlString);
+        }
+        else
+        {
+            throw std::exception("NIY ");
+        }
     }
     else if (this->m_paramType == JournalCallParamData::ParameterMetaType::OUTPUT)
     {

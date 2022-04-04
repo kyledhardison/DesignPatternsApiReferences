@@ -132,6 +132,12 @@ bool IsJournaling()
     return m_isJournaling;
 }
 
+extern void JournalReturnInt(int value, std::string paramName)
+{
+    // TODO 
+    // You will need ot create a JournalCallParamDataInteger class as a reminder
+}
+
 
 void JournalIntInParam(int value, std::string paramName)
 {
@@ -162,6 +168,15 @@ void JournalReturnClass(GuidObject* classObject, std::string className, std::str
 
     currentCall->AddReturnValue(journalCallParamData);
 }
+
+extern void JournalInClassParam(GuidObject* classObject, std::string className, std::string paramName)
+{
+    JournalCallParamDataClass* journalCallParamData =
+        new JournalCallParamDataClass(paramName, JournalCallParamData::ParameterMetaType::INPUT, classObject, className);
+
+    currentCall->AddParameter(journalCallParamData);
+}
+
 
 void JournalStartCall(std::string methodName, CannedGlobals cannedGlobal)
 {

@@ -4,14 +4,15 @@
 #include "..\Core\StringUtils.h"
 #include "..\DataReader\DataObjectReader.h"
 #include "..\DataReader\\DataReaderRegistrant.h"
+#include "..\Core\GuidObject.h"
 
 
 std::string Wire_VersionToken = "Wire_Version:";
 std::string Wire_DistanceToken = "Wire_Distance:";
 
 
-void* ReadWireVersion2(std::ifstream& streamObject);
-void* ReadWireVersion3(std::ifstream& streamObject);
+GuidObject* ReadWireVersion2(std::ifstream& streamObject);
+GuidObject* ReadWireVersion3(std::ifstream& streamObject);
 
 Wire* VersionUpWireVersion2(Wire2 *oldFeature);
 
@@ -20,8 +21,8 @@ static DataReaderRegistrant wire3registrant("Wire3", ReadWireVersion3);
 
 
 
-Wire::Wire(std::string distance)
-	: m_distance(distance)
+Wire::Wire(std::string distance, int guid)
+	: IWire(guid), m_distance(distance)
 {
 
 }
@@ -80,7 +81,7 @@ void ReadInWire(std::ifstream& streamObject)
 
 }
 
-void * ReadWireVersion2(std::ifstream& streamObject)
+GuidObject * ReadWireVersion2(std::ifstream& streamObject)
 {
 	std::string line;
 
@@ -107,15 +108,17 @@ void * ReadWireVersion2(std::ifstream& streamObject)
 		}
 
 	}
+	// TODO totally made up guid
+	int guid = 99999;
 
 	// TODO no validation we read in all the right fields 
 
-	return new Wire2(distance);
+	return new Wire2(distance, guid);
 
 }
 
 
-void * ReadWireVersion3(std::ifstream& streamObject)
+GuidObject* ReadWireVersion3(std::ifstream& streamObject)
 {
 
 	throw std::exception("NIY");
@@ -136,10 +139,12 @@ Wire* VersionUpWireVersion2(Wire2 * oldFeature)
 	std::string isAddition;
 	std::string isSubtraction;
 
+	int guid = oldFeature->GetGuid();
+
 	std::cout << "    VersionUpExtrudeVersion2" << std::endl;
 
 
-	retval = new Wire(distance);
+	retval = new Wire(distance, guid);
 
 	return retval;
 

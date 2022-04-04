@@ -10,4 +10,5 @@ public:
     virtual void Detach(IObserver* observer) = 0;
     virtual void NotifyAll() = 0;
     virtual void Notify(IObserver::EventTypes eventType) = 0;
+    virtual void Notify(IObserver::EventTypes eventType, void* data) =0;
 };

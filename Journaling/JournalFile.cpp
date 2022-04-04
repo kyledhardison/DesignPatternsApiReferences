@@ -70,8 +70,8 @@ void JournalFile::ProFormaStartCPP()
 {
     //Write out include Files
     *m_file << "#include <iostream>" << std::endl;
-    *m_file << "#include \"..\\AutomationBinding\\Session.h\"" << std::endl;
-    *m_file << "#include \"..\\AutomationBinding\\Part.h\"" << std::endl;
+    *m_file << "#include \"..\\AutomationBinding\\AutomationAPI_Session.h\"" << std::endl;
+    *m_file << "#include \"..\\AutomationBinding\\AutomationAPI_Part.h\"" << std::endl;
 
     *m_file << preProForma.str() << std::endl;
 

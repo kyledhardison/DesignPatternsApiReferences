@@ -89,22 +89,23 @@
   <ItemGroup>
     <None Include="cpp.hint" />
     <None Include="NonPimplVersionOfPart .h__" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AutomationBindingExports.h" />
-    <ClInclude Include="Wire.h" />
-    <ClInclude Include="Block.h" />
-    <ClInclude Include="BlockBuilder.h" />
-    <ClInclude Include="CADObject.h" />
-    <ClInclude Include="Extrude.h" />
-    <ClInclude Include="FeatureCollection.h" />
+    <ClInclude Include="AutomationAPI_Wire.h" />
+    <ClInclude Include="AutomationAPI_Block.h" />
+    <ClInclude Include="AutomationAPI_BlockBuilder.h" />
+    <ClInclude Include="AutomationAPI_CADObject.h" />
+    <ClInclude Include="AutomationAPI_Extrude.h" />
+    <ClInclude Include="AutomationAPI_FeatureCollection.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="IBuilder.h" />
-    <ClInclude Include="ICADObject.h" />
-    <ClInclude Include="Part.h" />
-    <ClInclude Include="RoutingCollection.h" />
-    <ClInclude Include="Session.h" />
-    <ClInclude Include="WireBuilder.h" />
+    <ClInclude Include="AutomationAPI_IBuilder.h" />
+    <ClInclude Include="AutomationAPI_ICADObject.h" />
+    <ClInclude Include="AutomationAPI_Part.h" />
+    <ClInclude Include="AutomationAPI_RoutingCollection.h" />
+    <ClInclude Include="AutomationAPI_Session.h" />
+    <ClInclude Include="AutomationAPI_WireBuilder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
@@ -136,5 +137,14 @@
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\boost.1.78.0\build\boost.targets" Condition="Exists('..\packages\boost.1.78.0\build\boost.targets')" />
+    <Import Project="..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets" Condition="Exists('..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\boost.1.78.0\build\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.78.0\build\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_locale-vc143.1.78.0\build\boost_locale-vc143.targets'))" />
+  </Target>
 </Project>

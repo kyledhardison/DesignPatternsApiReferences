@@ -14,7 +14,7 @@ std::wstring s2ws(const std::string& str)
     return wstrTo;
 }
 
-HINSTANCE  LoadLibrary(const char* libraryName)
+HINSTANCE  CoreLoadLibrary(const char* libraryName)
 {
     HINSTANCE hinstLib;
    

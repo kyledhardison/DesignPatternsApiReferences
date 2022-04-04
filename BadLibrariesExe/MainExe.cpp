@@ -13,6 +13,8 @@
 
 
 
+int main(int argc, char** argv);
+
 void RunTests();
 
 
@@ -29,6 +31,8 @@ int main(int argc, char** argv)
 		theUI->Init();
 
 		theUI->StartGUILoop();
+
+		theUI->ShutDownGUILoop();
 	}
 	else 
 	{

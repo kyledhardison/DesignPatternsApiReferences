@@ -1,10 +1,8 @@
-#include "Session.h"
-#include "Part.h"
+#include "AutomationAPI_Session.h"
+#include "AutomationAPI_Part.h"
 #include "..\Core\Core.h"
 #include "..\AppPartOps\PartOps.h"
-
-
-
+#include "..\AppPartOps\Journaling_Session.h"
 
 
 AutomationAPI::Session* AutomationAPI::Session::GetSession()
@@ -23,7 +21,7 @@ AutomationAPI::Session* AutomationAPI::Session::GetSession()
 
 AutomationAPI::Part* AutomationAPI::Session::MakePart(std::string partFilePath)
 {
-	PartFile * partFile =  Journaling_MakePart(partFilePath);
+	Application::PartFile * partFile =  Journaling_Session_MakePart(partFilePath);
 
 	int guid = partFile->GetGuid();
 
@@ -32,7 +30,7 @@ AutomationAPI::Part* AutomationAPI::Session::MakePart(std::string partFilePath)
 
 AutomationAPI::Part* AutomationAPI::Session::OpenPart(std::string partFilePath)
 {
-	PartFile* partFile = Journaling_OpenPart(partFilePath);
+	Application::PartFile* partFile = Journaling_Session_OpenPart(partFilePath);
 
 	int guid = partFile->GetGuid();
 
